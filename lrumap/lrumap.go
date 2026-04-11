@@ -60,22 +60,26 @@ func (m *LRUMap) Remove(key string) {
 
 func (m *LRUMap) makeRoomForOne() {
 	// map must be locked before calling
-	if len(m.entries) >= m.maxSize {
-		delete(m.entries, m.findLRUKey())
+	if len(m.entries) < m.maxSize {
+		return
 	}
-}
-
-func (m *LRUMap) findLRUKey() string {
-	// map must be locked before calling
+	// The ultimate goal is to delete the least recently used (LRU) entry.
+	// But if an expired entry is discovered along the way,
+	// delete this one instead and bail out early.
 	var lruKey string
 	var lruTime time.Time
 	first := true
+	now := time.Now()
 	for k, v := range m.entries {
+		if now.After(v.whenExpires) {
+			delete(m.entries, k)
+			return
+		}
 		if first || v.whenExpires.Before(lruTime) {
 			lruKey = k
 			lruTime = v.whenExpires
 			first = false
 		}
 	}
-	return lruKey
+	delete(m.entries, lruKey)
 }
