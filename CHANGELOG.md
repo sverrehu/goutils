@@ -1,5 +1,12 @@
 # Changelog
 
+## [1.0.1](https://github.com/sverrehu/goutils/compare/v1.0.0...v1.0.1) (2026-04-11)
+
+
+### Bug Fixes
+
+* bail out early if expired entry is found ([#8](https://github.com/sverrehu/goutils/issues/8)) ([8f248b8](https://github.com/sverrehu/goutils/commit/8f248b806b7da5c5245db5e3bf73512b7238f053))
+
 ## 1.0.0 (2026-04-11)
 
 
