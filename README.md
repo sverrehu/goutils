@@ -1,3 +1,3 @@
 # goutils
 
-Confucious say, this may come in handy.
+Makes my life easier.
