@@ -1,1 +1,3 @@
 # goutils
+
+Makes life easier.
