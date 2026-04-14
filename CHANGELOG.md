@@ -1,5 +1,12 @@
 # Changelog
 
+## [1.0.2](https://github.com/sverrehu/goutils/compare/v1.0.1...v1.0.2) (2026-04-14)
+
+
+### Bug Fixes
+
+* add getopt package ([#12](https://github.com/sverrehu/goutils/issues/12)) ([2f40c0d](https://github.com/sverrehu/goutils/commit/2f40c0d706db3723387660a3047a972c9fa15a86))
+
 ## [1.0.1](https://github.com/sverrehu/goutils/compare/v1.0.0...v1.0.1) (2026-04-11)
 
 
