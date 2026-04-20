@@ -1,5 +1,12 @@
 # Changelog
 
+## [1.0.3](https://github.com/sverrehu/goutils/compare/v1.0.2...v1.0.3) (2026-04-20)
+
+
+### Bug Fixes
+
+* **lrucache:** export struct members to make cache persistable ([4e21647](https://github.com/sverrehu/goutils/commit/4e216473324700d62b9896d0b1d3765b6bc96fc3))
+
 ## [1.0.2](https://github.com/sverrehu/goutils/compare/v1.0.1...v1.0.2) (2026-04-14)
 
 
