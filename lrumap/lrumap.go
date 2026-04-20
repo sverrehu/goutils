@@ -5,49 +5,49 @@ import (
 	"time"
 )
 
-type cacheEntry struct {
-	value        interface{}
-	whenLastUsed time.Time
-	whenExpires  time.Time
+type CacheEntry struct {
+	Value        interface{}
+	WhenLastUsed time.Time
+	WhenExpires  time.Time
 }
 
 type LRUMap struct {
-	entries map[string]*cacheEntry
-	maxSize int
-	ttl     time.Duration
+	Entries map[string]*CacheEntry
+	MaxSize int
+	TTL     time.Duration
 	mutex   sync.Mutex
 }
 
 func New(maxSize int, ttl time.Duration) (m *LRUMap) {
-	return &LRUMap{entries: make(map[string]*cacheEntry, maxSize), maxSize: maxSize, ttl: ttl}
+	return &LRUMap{Entries: make(map[string]*CacheEntry, maxSize), MaxSize: maxSize, TTL: ttl}
 }
 
 func (m *LRUMap) Put(key string, value interface{}) {
 	m.mutex.Lock()
 	defer m.mutex.Unlock()
 	m.makeRoomForOne()
-	v, ok := m.entries[key]
+	v, ok := m.Entries[key]
 	if !ok {
-		v = &cacheEntry{}
+		v = &CacheEntry{}
 	}
 	now := time.Now()
-	v.value = value
-	v.whenLastUsed = now
-	v.whenExpires = now.Add(m.ttl)
-	m.entries[key] = v
+	v.Value = value
+	v.WhenLastUsed = now
+	v.WhenExpires = now.Add(m.TTL)
+	m.Entries[key] = v
 }
 
 func (m *LRUMap) Get(key string) interface{} {
 	m.mutex.Lock()
 	defer m.mutex.Unlock()
-	if v, ok := m.entries[key]; ok {
+	if v, ok := m.Entries[key]; ok {
 		now := time.Now()
-		if now.After(v.whenExpires) {
-			delete(m.entries, key)
+		if now.After(v.WhenExpires) {
+			delete(m.Entries, key)
 			return nil
 		}
-		v.whenLastUsed = now
-		return v.value
+		v.WhenLastUsed = now
+		return v.Value
 	}
 	return nil
 }
@@ -55,12 +55,12 @@ func (m *LRUMap) Get(key string) interface{} {
 func (m *LRUMap) Remove(key string) {
 	m.mutex.Lock()
 	defer m.mutex.Unlock()
-	delete(m.entries, key)
+	delete(m.Entries, key)
 }
 
 func (m *LRUMap) makeRoomForOne() {
 	// map must be locked before calling
-	if len(m.entries) < m.maxSize {
+	if len(m.Entries) < m.MaxSize {
 		return
 	}
 	// The ultimate goal is to delete the least recently used (LRU) entry.
@@ -70,16 +70,16 @@ func (m *LRUMap) makeRoomForOne() {
 	var lruTime time.Time
 	first := true
 	now := time.Now()
-	for k, v := range m.entries {
-		if now.After(v.whenExpires) {
-			delete(m.entries, k)
+	for k, v := range m.Entries {
+		if now.After(v.WhenExpires) {
+			delete(m.Entries, k)
 			return
 		}
-		if first || v.whenExpires.Before(lruTime) {
+		if first || v.WhenExpires.Before(lruTime) {
 			lruKey = k
-			lruTime = v.whenExpires
+			lruTime = v.WhenExpires
 			first = false
 		}
 	}
-	delete(m.entries, lruKey)
+	delete(m.Entries, lruKey)
 }
