@@ -1,5 +1,12 @@
 # Changelog
 
+## [1.0.4](https://github.com/sverrehu/goutils/compare/v1.0.3...v1.0.4) (2026-08-13)
+
+
+### Bug Fixes
+
+* add image utils ([#16](https://github.com/sverrehu/goutils/issues/16)) ([02a66c8](https://github.com/sverrehu/goutils/commit/02a66c8f185f16f3ef78f5943b556f595b539187))
+
 ## [1.0.3](https://github.com/sverrehu/goutils/compare/v1.0.2...v1.0.3) (2026-04-20)
 
 
