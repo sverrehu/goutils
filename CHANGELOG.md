@@ -1,5 +1,12 @@
 # Changelog
 
+## [1.0.5](https://github.com/sverrehu/goutils/compare/v1.0.4...v1.0.5) (2026-10-11)
+
+
+### Bug Fixes
+
+* **deps:** update module golang.org/x/image to v0.47.0 ([#18](https://github.com/sverrehu/goutils/issues/18)) ([dd33032](https://github.com/sverrehu/goutils/commit/dd330327eb5fb797bb59920bb019dbe6573f9a40))
+
 ## [1.0.4](https://github.com/sverrehu/goutils/compare/v1.0.3...v1.0.4) (2026-08-13)
 
 
