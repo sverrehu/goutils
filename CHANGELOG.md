@@ -1,5 +1,12 @@
 # Changelog
 
+## [1.0.7](https://github.com/sverrehu/goutils/compare/v1.0.6...v1.0.7) (2026-11-23)
+
+
+### Bug Fixes
+
+* add more image handling features ([874b88c](https://github.com/sverrehu/goutils/commit/874b88c07ee3b536324b7eef23e07c565b1a6b0c))
+
 ## [1.0.6](https://github.com/sverrehu/goutils/compare/v1.0.5...v1.0.6) (2026-11-10)
 
 
